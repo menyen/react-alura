@@ -3,9 +3,21 @@ import './css/pure-min.css';
 import './css/side-menu.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {lista: []};
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:8080/api/autores")
+    .then(response => response.json())
+    .then(data => this.setState({ lista: data }));
+  }
+
   render() {
     return (
-      <div id="layout">
+      <div id="layout"> 
         <a href="#menu" id="menuLink" className="menu-link">
           <span></span>
         </a>
@@ -57,10 +69,16 @@ class App extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Alberto</td>
-                    <td>alberto.souza@caelum.com.br</td>
-                  </tr>
+                  {
+                    this.state.lista.map((autor) => {
+                      return(
+                        <tr key={autor.id}>
+                          <td>{autor.nome}</td>
+                          <td>{autor.email}</td>
+                        </tr>
+                      )
+                    })
+                  }
                 </tbody>
               </table>
             </div>
