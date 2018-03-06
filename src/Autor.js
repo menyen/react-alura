@@ -38,9 +38,6 @@ class AutorForm extends Component {
     super();
     this.state = { nome: '', email: '', senha: '' };
     this.enviaForm = this.enviaForm.bind(this);
-    this.setNome = this.setNome.bind(this);
-    this.setEmail = this.setEmail.bind(this);
-    this.setSenha = this.setSenha.bind(this);
   }
 
   enviaForm(event) {
@@ -64,25 +61,17 @@ class AutorForm extends Component {
 
   }
 
-  setNome(event) {
-    this.setState({ nome: event.target.value });
-  }
-
-  setEmail(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  setSenha(event) {
-    this.setState({ senha: event.target.value });
+  setInputModification(inputName, event) {
+    this.setState({ [inputName]: event.target.value });
   }
 
   render() {
     return (
       <div className="pure-form pure-form-aligned">
         <form className="pure-form pure-form-aligned" onSubmit={this.enviaForm} method="post">
-          <CustomInput id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome} />
-          <CustomInput id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail} />
-          <CustomInput id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha} />
+          <CustomInput id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setInputModification.bind(this, 'nome')} />
+          <CustomInput id="email" type="email" name="email" value={this.state.email} onChange={this.setInputModification.bind(this, 'email')} />
+          <CustomInput id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setInputModification.bind(this, 'senha')} />
           <div className="pure-control-group">
             <label></label>
             <button type="submit" className="pure-button pure-button-primary">Gravar</button>
