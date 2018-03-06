@@ -6,7 +6,7 @@ import Autor from './Autor';
 import Livro from './Livro';
 import Home from './Home';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 ReactDOM.render(
     <BrowserRouter>
